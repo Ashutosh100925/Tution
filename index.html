@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalEd | Premium Tuition for Academic Excellence</title>
+    <title>Soubhagya’s Chemistry | Premium Tuition for Class 11 & 12</title>
     <script>
-        (function() {
+        (function () {
             const theme = localStorage.getItem('selected-theme') || 'theme-sage';
             document.documentElement.className = theme;
             if (theme === 'theme-custom') {
@@ -18,7 +18,7 @@
         })();
     </script>
     <meta name="description"
-        content="World-Class Learning for Future Toppers. Premium tuition website offering personalized guidance and expert mentorship for academic excellence.">
+        content="Master Chemistry with Clarity and Confidence. Soubhagya’s Chemistry offers premium tuition for CBSE & ICSE Class 11 & 12, led by Dr. Soubhagya Ranjan Dash. Concept-driven learning and board exam specialization.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,21 +34,21 @@
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
             <a href="#top" class="logo">
-                <span class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></span>
-                <span class="logo-text">Soubhagya`s Chemistry</span>
+                <span class="logo-icon"><i class="fa-solid fa-flask-vial"></i></span>
+                <span class="logo-text">Soubhagya’s Chemistry</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#courses">Courses</a></li>
                 <li><a href="#admissions">Admissions</a></li>
                 <li><a href="#achievements">Results</a></li>
-                <li><a href="#">Resources</a></li>
+                <li><a href="#resources">Resources</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li class="mobile-only mt-4 pt-4 border-top-glass"><a href="themes.html"
-                        class="flex-align-center gap-2 text-white"><i class="fa-solid fa-palette text-muted"></i> Change
-                        Theme</a></li>
             </ul>
             <div class="nav-actions flex-align-center gap-3 relative">
                 <button
@@ -68,41 +68,70 @@
                 </div>
 
                 <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                <div class="menu-toggle" id="mobile-menu">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Sidebar (Direct Child of Body for absolute reliability) -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-flask-vial"></i></span>
+                <span class="logo-text">Soubhagya’s</span>
+            </div>
+            <div class="close-sidebar" id="closeSidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="#about"><i class="fa-solid fa-user-graduate"></i> About</a></li>
+            <li><a href="#courses"><i class="fa-solid fa-book-open-reader"></i> Courses</a></li>
+            <li><a href="#admissions"><i class="fa-solid fa-id-card"></i> Admissions</a></li>
+            <li><a href="#achievements"><i class="fa-solid fa-award"></i> Results</a></li>
+            <li><a href="#resources"><i class="fa-solid fa-flask"></i> Resources</a></li>
+            <li><a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
+            <li class="mt-auto pt-4 border-top-glass"><a href="themes.html"
+                    class="flex-align-center gap-2 text-white"><i class="fa-solid fa-palette text-muted"></i> Change Theme</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Lead-in (Centered Above Hero) -->
+    <div class="hero-leadin py-10 text-center relative z-10">
+        <div class="typing-container text-secondary font-black tracking-widest uppercase">
+            <span id="typing-text"></span><span class="cursor">|</span>
+        </div>
+    </div>
+
     <!-- 1. Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero pt-0">
         <div class="hero-bg-glow glow-1"></div>
         <div class="hero-bg-glow glow-2"></div>
         <div class="container hero-container">
             <div class="hero-content reveal">
-                <div class="badge fade-in-up">🌟 Premium Learning Experience</div>
+                <div class="badge fade-in-up">🧪 Specialized Chemistry Tuition</div>
                 <h1 class="fade-in-up" style="animation-delay: 0.1s">
-                    World-Class Learning for <span class="text-gradient">Future Toppers</span>
+                    Master Chemistry with <span class="text-gradient">Clarity & Confidence</span>
                 </h1>
-                <p class="hero-subtitle fade-in-up" style="animation-delay: 0.2s">
-                    Empowering students with personalized guidance, expert mentorship, and a proven framework for
-                    academic excellence.
-                </p>
+                <h2 class="hero-subtitle fade-in-up font-normal text-white-70 mt-2"
+                    style="animation-delay: 0.2s; font-size: 1.25rem;">
+                    Premium guidance for CBSE and ICSE students with concept-based teaching, board-specialized
+                    preparation, and personal mentorship.
+                </h2>
                 <div class="hero-buttons fade-in-up" style="animation-delay: 0.3s">
                     <a href="#enroll" class="btn btn-primary btn-large">
-                        Enroll Now <i class="fa-solid fa-arrow-right"></i>
+                        Join the Batch <i class="fa-solid fa-flask"></i>
                     </a>
                     <a href="#courses" class="btn btn-secondary btn-large">
-                        <i class="fa-solid fa-play"></i> Explore Courses
+                        Explore Courses
                     </a>
                 </div>
                 <div class="trust-badges fade-in-up" style="animation-delay: 0.4s">
                     <div class="trust-badge">
-                        <i class="fa-solid fa-check-circle text-emerald"></i> Expert Guidance
+                        <i class="fa-solid fa-atom text-emerald"></i> Concept Clarity
                     </div>
                     <div class="trust-badge">
-                        <i class="fa-solid fa-chart-line text-primary"></i> Result Oriented
+                        <i class="fa-solid fa-file-invoice text-primary"></i> Board Exam Focused
                     </div>
                     <div class="trust-badge">
                         <i class="fa-solid fa-shield-heart text-secondary"></i> Parent Trusted
@@ -135,7 +164,7 @@
             <div class="about-visual reveal fade-in-right">
                 <div class="teacher-image-wrapper">
                     <div class="image-backdrop"></div>
-                    <img src="Photo.png" alt="Lead Teacher" class="teacher-img">
+                    <img src="Photo.jpeg" alt="Lead Teacher" class="teacher-img">
                     <div class="experience-badge glass-card border-glass">
                         <span class="years text-gradient">15+</span>
                         <span class="text">Years of<br>Excellence</span>
@@ -144,128 +173,93 @@
             </div>
             <div class="about-content reveal fade-in-up">
                 <span class="badge">About the Mentor</span>
-                <h2 class="section-title">Master the Art of <span class="text-gradient">Learning</span></h2>
-                <h3 class="teacher-name mt-2">Mr. Soubhagya Ranjan Dash</h3>
-                <p class="teacher-credentials text-primary font-medium mb-4">Ph.D. in Education | Former Head of
-                    Department</p>
+                <h2 class="section-title">A Vision for <span class="text-gradient">Conceptual Chemistry</span></h2>
+                <h3 class="teacher-name mt-2 text-white">Dr. Soubhagya Ranjan Dash</h3>
+                <p class="teacher-credentials text-primary font-medium mb-4">Ph.D. in Chemistry | 15+ Years specialized
+                    Boards Mentorship</p>
                 <div class="about-text glass-panel p-4 mb-5 border-radius-lg">
-                    <p class="text-muted italic m-0">"My teaching philosophy goes beyond rote memorization. I believe in
-                        cultivating deep structural understanding and critical thinking skills. When a student truly
-                        grasps the 'why', the 'how' becomes effortless."</p>
+                    <p class="text-muted italic m-0">"Chemistry is not about memorizing equations; it's about
+                        understanding the molecular logic behind them. My goal is to build a foundation so strong that
+                        Class 12 Boards and competitive exams feel like a natural progression."</p>
                 </div>
                 <ul class="why-join-list mb-5">
-                    <li><i class="fa-solid fa-arrow-right-long text-primary"></i> <span>Concept-driven methodology
-                            tailored to each student.</span></li>
-                    <li><i class="fa-solid fa-arrow-right-long text-primary"></i> <span>Psychological approach to
-                            overcome exam anxiety.</span></li>
-                    <li><i class="fa-solid fa-arrow-right-long text-primary"></i> <span>Developing lifelong
-                            self-learning habits.</span></li>
+                    <li><i class="fa-solid fa-microscope text-primary"></i> <span>Concept-driven methodology that
+                            simplifies complex reactions.</span></li>
+                    <li><i class="fa-solid fa-file-signature text-primary"></i> <span>Meticulous Board Exam strategy
+                            with curated model questions.</span></li>
+                    <li><i class="fa-solid fa-user-check text-primary"></i> <span>Personalized guidance to identify and
+                            bridge individual learning gaps.</span></li>
                 </ul>
-                <a href="#courses" class="btn btn-outline">View Methodology</a>
+                <a href="#enroll" class="btn btn-outline">Join My Classes</a>
             </div>
         </div>
     </section>
-
-    <!-- 3. Courses Section -->
-    <section id="courses" class="courses section">
+    <!-- 3. Premium Horizontal Focus UI: Course slider -->
+    <section id="courses" class="course-focus-section">
         <div class="container">
-            <div class="section-header text-center reveal fade-in-up">
-                <span class="badge mx-auto">Curriculum</span>
-                <h2 class="section-title mt-3">Premium <span class="text-gradient">Course</span> Offerings</h2>
-                <p class="section-subtitle mx-auto mt-3">Structured pathways designed for absolute mastery and top-tier
-                    results.</p>
+            <div class="course-header reveal fade-in-up">
+                <h2 class="section-title">Academic <span class="text-gradient">Advantage</span> Programs</h2>
+                <p class="section-subtitle mx-auto">Specialized pathways for Board Mastery and Advanced Chemistry
+                    concepts.</p>
             </div>
+        </div>
+
+        <div class="course-static-container">
             <div class="course-grid">
-                <!-- Course Card 1 -->
-                <div class="course-card glass-card hover-lift reveal fade-in-up" style="transition-delay: 0.1s">
-                    <div class="course-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="course-content p-5">
-                        <div class="course-meta mb-3 flex-align-center justify-between">
-                            <span class="tag bg-glass text-xs">Grade 10</span>
-                            <span class="tag text-gold bg-gold-glass text-xs">Board Special</span>
-                        </div>
-                        <h3 class="course-title text-xl mb-3">Foundation & Boards Mastery</h3>
-                        <p class="course-desc text-muted text-sm mb-4">Comprehensive preparation for board exams with a
-                            focus on core conceptual clarity in Science and Mathematics.</p>
-                        <ul class="course-features border-top-glass pt-4 mb-5">
-                            <li class="flex-align-center gap-2 mb-2 text-sm"><i
-                                    class="fa-regular fa-clock text-primary"></i> 1 Year Duration</li>
-                            <li class="flex-align-center gap-2 mb-2 text-sm"><i
-                                    class="fa-solid fa-book-open-reader text-primary"></i> Math, Physics, Chemistry</li>
-                        </ul>
-                        <div class="course-footer flex-align-center justify-between mt-auto">
-                            <div class="price">
-                                <span class="amount text-xl font-bold">$1,200</span>
-                                <span class="period text-xs text-muted">/ year</span>
-                            </div>
-                            <a href="#enroll" class="btn btn-secondary btn-small">Details</a>
-                        </div>
-                    </div>
+                <!-- Card 1 -->
+                <div class="focus-card reveal" data-course="1">
+                    <div class="course-badge" style="position:static; margin-bottom:1.5rem; width:fit-content;">CBSE /
+                        Class 11</div>
+                    <h3 class="font-serif">Foundation Dynamics</h3>
+                    <ul class="focus-topic-list">
+                        <li><i class="fa-solid fa-atom"></i> Atomic Structure</li>
+                        <li><i class="fa-solid fa-flask"></i> Chemical Bonding</li>
+                        <li><i class="fa-solid fa-fire"></i> Thermodynamics</li>
+                        <li><i class="fa-solid fa-leaf"></i> Organic Chemistry</li>
+                    </ul>
+                    <a href="#enroll" class="btn-focus">Inquire Now</a>
                 </div>
 
-                <!-- Course Card 2 (Featured) -->
-                <div class="course-card glass-card course-featured hover-lift glow-border reveal fade-in-up"
-                    style="transition-delay: 0.2s">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="course-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="course-content p-5">
-                        <div class="course-meta mb-3 flex-align-center justify-between">
-                            <span class="tag bg-glass text-xs">Grade 11 & 12</span>
-                            <span class="tag text-primary bg-primary-glass text-xs">Advanced</span>
-                        </div>
-                        <h3 class="course-title text-2xl mb-3">Elite Competitive Batch</h3>
-                        <p class="course-desc text-muted text-sm mb-4">Intensive training program specifically
-                            engineered for national level competitive engineering and medical entrance exams.</p>
-                        <ul class="course-features border-top-glass pt-4 mb-5">
-                            <li class="flex-align-center gap-2 mb-2 text-sm"><i
-                                    class="fa-regular fa-clock text-primary"></i> 2 Years Duration</li>
-                            <li class="flex-align-center gap-2 mb-2 text-sm"><i
-                                    class="fa-solid fa-book-open-reader text-primary"></i> PCM / PCB Focus</li>
-                        </ul>
-                        <div class="course-footer flex-align-center justify-between mt-auto">
-                            <div class="price">
-                                <span class="amount text-gradient text-2xl font-bold">$2,500</span>
-                                <span class="period text-xs text-muted">/ year</span>
-                            </div>
-                            <a href="#enroll" class="btn btn-primary btn-small glow-btn">Enroll Now</a>
-                        </div>
-                    </div>
+                <!-- Card 2 -->
+                <div class="focus-card reveal" data-course="2">
+                    <div class="course-badge" style="position:static; margin-bottom:1.5rem; width:fit-content;">CBSE /
+                        Class 12</div>
+                    <h3 class="font-serif">Board Excellence</h3>
+                    <ul class="focus-topic-list">
+                        <li><i class="fa-solid fa-bolt"></i> Electrochemistry</li>
+                        <li><i class="fa-solid fa-vial-circle-check"></i> Chemical Kinetics</li>
+                        <li><i class="fa-solid fa-circle-nodes"></i> P-Block Elements</li>
+                        <li><i class="fa-solid fa-vial"></i> Solutions</li>
+                    </ul>
+                    <a href="#enroll" class="btn-focus">Inquire Now</a>
                 </div>
 
-                <!-- Course Card 3 -->
-                <div class="course-card glass-card hover-lift reveal fade-in-up" style="transition-delay: 0.3s">
-                    <div class="course-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="course-content p-5">
-                        <div class="course-meta mb-3 flex-align-center justify-between">
-                            <span class="tag bg-glass text-xs">Grade 8 & 9</span>
-                            <span class="tag text-emerald bg-emerald-glass text-xs">Olympiad</span>
-                        </div>
-                        <h3 class="course-title text-xl mb-3">Olympiad Scholars Prep</h3>
-                        <p class="course-desc text-muted text-sm mb-4">Early foundation building for highly motivated
-                            students aiming for International Science and Math Olympiads.</p>
-                        <ul class="course-features border-top-glass pt-4 mb-5">
-                            <li class="flex-align-center gap-2 mb-2 text-sm"><i
-                                    class="fa-regular fa-clock text-primary"></i> 8 Months Duration</li>
-                            <li class="flex-align-center gap-2 mb-2 text-sm"><i
-                                    class="fa-solid fa-book-open-reader text-primary"></i> Advanced Sciences</li>
-                        </ul>
-                        <div class="course-footer flex-align-center justify-between mt-auto">
-                            <div class="price">
-                                <span class="amount text-xl font-bold">$900</span>
-                                <span class="period text-xs text-muted">/ year</span>
-                            </div>
-                            <a href="#enroll" class="btn btn-secondary btn-small">Details</a>
-                        </div>
-                    </div>
+                <!-- Card 3 -->
+                <div class="focus-card reveal" data-course="3">
+                    <div class="course-badge" style="position:static; margin-bottom:1.5rem; width:fit-content;">ICSE /
+                        Class 11</div>
+                    <h3 class="font-serif">Structural Core</h3>
+                    <ul class="focus-topic-list">
+                        <li><i class="fa-solid fa-table-cells"></i> Periodic Table</li>
+                        <li><i class="fa-solid fa-vial"></i> Mole Concept</li>
+                        <li><i class="fa-solid fa-microscope"></i> Analytical Chem</li>
+                        <li><i class="fa-solid fa-mountain"></i> Metallurgy</li>
+                    </ul>
+                    <a href="#enroll" class="btn-focus">Inquire Now</a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="focus-card reveal" data-course="4">
+                    <div class="course-badge" style="position:static; margin-bottom:1.5rem; width:fit-content;">ICSE /
+                        Class 12</div>
+                    <h3 class="font-serif">Organic Logic</h3>
+                    <ul class="focus-topic-list">
+                        <li><i class="fa-solid fa-circle-dot"></i> Coordination Comp</li>
+                        <li><i class="fa-solid fa-flask-vial"></i> Haloalkanes</li>
+                        <li><i class="fa-solid fa-dna"></i> Biomolecules</li>
+                        <li><i class="fa-solid fa-droplet"></i> Surface Chemistry</li>
+                    </ul>
+                    <a href="#enroll" class="btn-focus">Inquire Now</a>
                 </div>
             </div>
         </div>
@@ -285,37 +279,37 @@
                     </div>
                     <h2 class="text-3xl lg-text-4xl mb-4"><span class="text-gradient">2026</span> Admissions Now Open
                     </h2>
-                    <p class="text-muted mb-8 leading-relaxed">Secure your child's future. Our rigorous selection
-                        process ensures an elite peer group. Limited to only 40 students per batch to guarantee
-                        personalized attention.</p>
+                    <p class="text-muted mb-8 leading-relaxed">Secure your seat for the upcoming academic session. We
+                        maintain small batches to ensure Dr. Soubhagya Dash can provide personal mentorship to every
+                        student.</p>
                     <div class="timeline border-left-glass pl-6 ml-3 relative">
                         <div class="timeline-item relative mb-6">
                             <div class="timeline-dot dot-active"></div>
-                            <strong class="d-block text-white mb-1">Phase 1: Registration</strong>
-                            <span class="text-xs text-primary font-medium">Ends April 30th</span>
+                            <strong class="d-block text-white mb-1">Phase 1: Registration & Diagnostic</strong>
+                            <span class="text-xs text-primary font-medium">Currently Open</span>
                         </div>
                         <div class="timeline-item relative mb-6">
                             <div class="timeline-dot"></div>
-                            <strong class="d-block text-white mb-1">Phase 2: Diagnostic Assessment</strong>
-                            <span class="text-xs text-muted">May 1st - 15th</span>
+                            <strong class="d-block text-white mb-1">Phase 2: Counseling Sessions</strong>
+                            <span class="text-xs text-muted">May 2026</span>
                         </div>
                         <div class="timeline-item relative">
                             <div class="timeline-dot"></div>
-                            <strong class="d-block text-white mb-1">Phase 3: Classes Commence</strong>
-                            <span class="text-xs text-muted">Mid-June</span>
+                            <strong class="d-block text-white mb-1">Phase 3: Session Commencement</strong>
+                            <span class="text-xs text-muted">June 1st, 2026</span>
                         </div>
                     </div>
                 </div>
                 <div
                     class="banner-action glass-panel p-8 border-radius-lg flex flex-col flex-align-center justify-center text-center">
                     <div class="seats-left mb-6">
-                        <span class="number text-6xl font-black text-gradient d-block lh-1 mb-2">12</span>
+                        <span class="number text-6xl font-black text-gradient d-block lh-1 mb-2">08</span>
                         <span class="text text-sm font-medium text-white uppercase tracking-widest">Seats
                             Remaining</span>
                     </div>
-                    <a href="#enroll" class="btn btn-primary btn-large w-full glow-btn shadow-blue mt-4">Secure Your
-                        Seat</a>
-                    <p class="text-xs text-muted mt-4">*Financial aid available for meritorious students</p>
+                    <a href="#enroll" class="btn btn-primary btn-large w-full glow-btn shadow-blue mt-4">Inquire for
+                        Admission</a>
+                    <p class="text-xs text-muted mt-4">*Available for CBSE & ICSE Boards</p>
                 </div>
             </div>
         </div>
@@ -393,13 +387,12 @@
     <!-- 6. Results / Achievements Section -->
     <section id="achievements"
         class="achievements section text-center border-top-glass border-bottom-glass py-16 relative overflow-hidden bg-primary-dark">
-        <div class="achievements-bg absolute inset-0 opacity-10 background-pattern"></div>
         <div class="container relative z-10">
             <div class="achievements-grid grid-cols-2 lg-grid-cols-4 gap-8">
                 <div class="achievement-stat reveal fade-in-up p-6" style="transition-delay: 0.1s">
                     <div class="icon-wrapper text-4xl mb-4 text-emerald"><i class="fa-solid fa-user-graduate"></i></div>
                     <div class="stat-group flex-center text-5xl font-black mb-2 font-serif text-white">
-                        <span class="stat-number" data-target="2500">0</span>
+                        <span class="stat-number" data-target="1200">0</span>
                         <span class="stat-plus text-primary">+</span>
                     </div>
                     <div class="stat-label text-sm uppercase tracking-widest text-muted font-bold">Students Mentored
@@ -412,30 +405,69 @@
                         <span class="stat-number" data-target="15">0</span>
                         <span class="stat-plus text-primary">+</span>
                     </div>
-                    <div class="stat-label text-sm uppercase tracking-widest text-muted font-bold">Years of Legacy</div>
+                    <div class="stat-label text-sm uppercase tracking-widest text-muted font-bold">Years of Excellence
+                    </div>
                 </div>
                 <div class="achievement-stat reveal fade-in-up p-6" style="transition-delay: 0.3s">
-                    <div class="icon-wrapper text-4xl mb-4 text-gold"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                    <div class="icon-wrapper text-4xl mb-4 text-gold"><i class="fa-solid fa-award"></i></div>
                     <div class="stat-group flex-center text-5xl font-black mb-2 font-serif text-white">
                         <span class="stat-number" data-target="98">0</span>
                         <span class="stat-plus text-primary">%</span>
                     </div>
-                    <div class="stat-label text-sm uppercase tracking-widest text-muted font-bold">Success Rate</div>
+                    <div class="stat-label text-sm uppercase tracking-widest text-muted font-bold">Board Success Rate
+                    </div>
                 </div>
                 <div class="achievement-stat reveal fade-in-up p-6" style="transition-delay: 0.4s">
-                    <div class="icon-wrapper text-4xl mb-4 text-secondary"><i class="fa-solid fa-medal"></i></div>
+                    <div class="icon-wrapper text-4xl mb-4 text-secondary"><i class="fa-solid fa-star"></i></div>
                     <div class="stat-group flex-center text-5xl font-black mb-2 font-serif text-white">
-                        <span class="stat-number" data-target="150">0</span>
+                        <span class="stat-number" data-target="95">0</span>
                         <span class="stat-plus text-primary">+</span>
                     </div>
-                    <div class="stat-label text-sm uppercase tracking-widest text-muted font-bold">National Top 100
-                        Ranks</div>
+                    <div class="stat-label text-sm uppercase tracking-widest text-muted font-bold">Top Board Scores
+                        (95%+)</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. Testimonials Section -->
+    <!-- 7. Academic Resource Hub Preview -->
+    <section id="resources" class="resources section bg-alt relative overflow-hidden">
+        <div class="container">
+            <div class="section-header text-center reveal fade-in-up">
+                <span class="badge mx-auto">Authority Hub</span>
+                <h2 class="section-title mt-3">Curated <span class="text-gradient">Study Materials</span></h2>
+                <p class="section-subtitle mx-auto mt-3">High-value resources designed by Dr. Soubhagya Dash to simplify
+                    your learning journey.</p>
+            </div>
+
+            <div class="resources-grid grid grid-cols-1 md-grid-cols-3 gap-8 mt-10">
+                <!-- Resource 1 -->
+                <div class="resource-card glass-card p-8 reveal fade-in-up" style="transition-delay: 0.1s">
+                    <div class="resource-icon text-3xl text-primary mb-4"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h3 class="text-xl mb-3">Advanced Theory Notes</h3>
+                    <p class="text-sm text-muted mb-4">Chapter-wise comprehensive notes focusing on core conceptual
+                        clarity for Class 11 & 12.</p>
+                    <span class="text-xs font-bold text-primary uppercase tracking-widest">Coming Soon</span>
+                </div>
+                <!-- Resource 2 -->
+                <div class="resource-card glass-card p-8 reveal fade-in-up" style="transition-delay: 0.2s">
+                    <div class="resource-icon text-3xl text-emerald mb-4"><i class="fa-solid fa-list-check"></i></div>
+                    <h3 class="text-xl mb-3">Daily Practice Sheets</h3>
+                    <p class="text-sm text-muted mb-4">Graded assignment sets from basic to advanced levels to master
+                        chemical equations.</p>
+                    <span class="text-xs font-bold text-emerald uppercase tracking-widest">Available for Batch</span>
+                </div>
+                <!-- Resource 3 -->
+                <div class="resource-card glass-card p-8 reveal fade-in-up" style="transition-delay: 0.3s">
+                    <div class="resource-icon text-3xl text-gold mb-4"><i class="fa-solid fa-book-open"></i></div>
+                    <h3 class="text-xl mb-3">NCERT Solutions+</h3>
+                    <p class="text-sm text-muted mb-4">In-depth explanations of NCERT problems with added board-exam
+                        tips and tricks.</p>
+                    <span class="text-xs font-bold text-gold uppercase tracking-widest">Preview Only</span>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="testimonials section bg-alt relative">
         <div
             class="bg-shape shadow-blue w-96 h-96 absolute top-0 right-0 rounded-full blur-3xl opacity-20 bg-primary pointer-events-none">
@@ -450,61 +482,61 @@
                 class="testimonial-slider-container reveal fade-in-up glass-card max-w-4xl mx-auto p-8 lg-p-12 border-radius-xl mt-10 relative">
                 <div class="testimonial-slider relative overflow-hidden h-80 md-h-64" id="testimonialSlider">
                     <!-- Slide 1 -->
-                    <div
-                        class="testimonial-slide absolute top-0 left-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-500 active-slide">
-                        <div class="quote-icon text-6xl text-primary opacity-20 absolute top-0 left-0 -mt-4 -ml-2"><i
-                                class="fa-solid fa-quote-left"></i></div>
-                        <p
-                            class="testimonial-text text-xl md-text-2xl font-serif italic mb-8 relative z-10 leading-relaxed text-white">
-                            "The transformation in my daughter's confidence is incredible. Not only did her grades
-                            improve from average to top of her class, but her entire approach to problem-solving
-                            changed. This isn't just tuition; it's a completely elevated educational experience."</p>
-                        <div class="testimonial-author flex-align-center gap-4">
-                            <img src="https://ui-avatars.com/api/?name=SJ&background=06b6d4&color=fff&rounded=true&size=60"
-                                alt="Parent" class="rounded-circle border-2 border-primary">
-                            <div class="author-info">
-                                <h4 class="text-lg m-0">Sarah Jenkins</h4>
-                                <span class="text-sm text-primary font-medium">Parent of Grade 12 Student</span>
+                    <div class="testimonial-slide active">
+                        <div class="student-profile mb-6 flex-align-center gap-4">
+                            <div class="avatar w-16 h-16 rounded-circle border-glass p-1">
+                                <div
+                                    class="w-full h-full rounded-circle bg-gradient-brand flex-center text-xl font-bold">
+                                    AP</div>
+                            </div>
+                            <div class="info">
+                                <h4 class="text-white m-0">Ananya Pandey</h4>
+                                <p class="text-primary text-xs font-medium uppercase tracking-widest">Class 12 CBSE (98%
+                                    Chemistry)</p>
                             </div>
                         </div>
+                        <p class="testimonial-text text-lg italic text-white-90 leading-relaxed font-serif">
+                            "Dr. Soubhagya’s approach to Organic Chemistry totally changed my perspective. I used to
+                            struggle with reactions, but his 'Logic First' method made everything click effortlessly!"
+                        </p>
                     </div>
                     <!-- Slide 2 -->
-                    <div
-                        class="testimonial-slide absolute top-0 left-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-500">
-                        <div class="quote-icon text-6xl text-primary opacity-20 absolute top-0 left-0 -mt-4 -ml-2"><i
-                                class="fa-solid fa-quote-left"></i></div>
-                        <p
-                            class="testimonial-text text-xl md-text-2xl font-serif italic mb-8 relative z-10 leading-relaxed text-white">
-                            "Before joining, I was terrified of Physics. The unique visual teaching methods and the
-                            ability to ask questions without judgment helped me secure a 99th percentile in my entrance
-                            exams. Forever grateful to Dr. Wright and the team."</p>
-                        <div class="testimonial-author flex-align-center gap-4">
-                            <img src="https://ui-avatars.com/api/?name=AM&background=3b82f6&color=fff&rounded=true&size=60"
-                                alt="Student" class="rounded-circle border-2 border-primary">
-                            <div class="author-info">
-                                <h4 class="text-lg m-0">Arjun Mehta</h4>
-                                <span class="text-sm text-primary font-medium">Alumnus, now at MIT</span>
+                    <div class="testimonial-slide">
+                        <div class="student-profile mb-6 flex-align-center gap-4">
+                            <div class="avatar w-16 h-16 rounded-circle border-glass p-1">
+                                <div
+                                    class="w-full h-full rounded-circle bg-glass flex-center text-xl font-bold text-secondary">
+                                    RS</div>
+                            </div>
+                            <div class="info">
+                                <h4 class="text-white m-0">Rohan Sharma</h4>
+                                <p class="text-primary text-xs font-medium uppercase tracking-widest">Class 12 ICSE (95%
+                                    Chemistry)</p>
                             </div>
                         </div>
+                        <p class="testimonial-text text-lg italic text-white-90 leading-relaxed font-serif">
+                            "The study materials provided are pure gold. The mock tests were so similar to the actual
+                            ICSE board paper that I walked into the exam hall with zero anxiety."
+                        </p>
                     </div>
                     <!-- Slide 3 -->
-                    <div
-                        class="testimonial-slide absolute top-0 left-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-500">
-                        <div class="quote-icon text-6xl text-primary opacity-20 absolute top-0 left-0 -mt-4 -ml-2"><i
-                                class="fa-solid fa-quote-left"></i></div>
-                        <p
-                            class="testimonial-text text-xl md-text-2xl font-serif italic mb-8 relative z-10 leading-relaxed text-white">
-                            "The weekly diagnostic tests and the detailed analytics provided to parents are
-                            unparalleled. We always knew exactly where Rahul stood and what areas needed focus. The
-                            premium fee is absolutely justified by the immense value delivered."</p>
-                        <div class="testimonial-author flex-align-center gap-4">
-                            <img src="https://ui-avatars.com/api/?name=DC&background=10b981&color=fff&rounded=true&size=60"
-                                alt="Parent" class="rounded-circle border-2 border-primary">
-                            <div class="author-info">
-                                <h4 class="text-lg m-0">David Chen</h4>
-                                <span class="text-sm text-primary font-medium">Parent of Grade 10 Student</span>
+                    <div class="testimonial-slide">
+                        <div class="student-profile mb-6 flex-align-center gap-4">
+                            <div class="avatar w-16 h-16 rounded-circle border-glass p-1">
+                                <div
+                                    class="w-full h-full rounded-circle bg-glass flex-center text-xl font-bold text-emerald">
+                                    MD</div>
+                            </div>
+                            <div class="info">
+                                <h4 class="text-white m-0">Meera Das</h4>
+                                <p class="text-primary text-xs font-medium uppercase tracking-widest">Parent of Class 11
+                                    Student</p>
                             </div>
                         </div>
+                        <p class="testimonial-text text-lg italic text-white-90 leading-relaxed font-serif">
+                            "Seeing my daughter actually enjoy solving molarity problems was a first! Dr. Dash provides
+                            a level of personal care that you simply don't find in big coaching institutes."
+                        </p>
                     </div>
                 </div>
                 <div class="slider-controls flex-align-center justify-between mt-8 pt-6 border-top-glass">
@@ -600,7 +632,7 @@
                 <!-- FAQ Item 1 -->
                 <div class="accordion-item glass-card mb-4 border-radius-lg overflow-hidden transition">
                     <div class="accordion-header p-6 flex-align-center justify-between cursor-pointer user-select-none">
-                        <h4 class="text-lg m-0 pr-4">How can I enroll my child?</h4>
+                        <h4 class="text-lg m-0 pr-4">Do you teach both CBSE and ICSE students?</h4>
                         <div
                             class="accordion-icon w-8 h-8 rounded-circle bg-glass flex-center text-primary transition shrink-0">
                             <i class="fa-solid fa-plus"></i>
@@ -608,46 +640,13 @@
                     </div>
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
                         <div class="accordion-content-inner p-6 pt-0 text-muted border-top-glass mt-2">
-                            <p>Enrollment begins with filling out the form below. After submission, our academic
-                                counselor will contact you to schedule a brief diagnostic assessment for your child.
-                                Based on the results, we will recommend the most suitable batch.</p>
+                            <p>Yes, we have specialized batches for both CBSE and ICSE/ISC boards. Each batch follows a
+                                curriculum strictly aligned with their respective board's latest syllabus and
+                                examination patterns.</p>
                         </div>
                     </div>
                 </div>
                 <!-- FAQ Item 2 -->
-                <div class="accordion-item glass-card mb-4 border-radius-lg overflow-hidden transition">
-                    <div class="accordion-header p-6 flex-align-center justify-between cursor-pointer user-select-none">
-                        <h4 class="text-lg m-0 pr-4">What are the batch timings?</h4>
-                        <div
-                            class="accordion-icon w-8 h-8 rounded-circle bg-glass flex-center text-primary transition shrink-0">
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
-                        <div class="accordion-content-inner p-6 pt-0 text-muted border-top-glass mt-2">
-                            <p>We offer both weekday evening and weekend batches to accommodate school schedules.
-                                Specific timings are alloted post-admission to ensure homogenous peer groups.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- FAQ Item 3 -->
-                <div class="accordion-item glass-card mb-4 border-radius-lg overflow-hidden transition">
-                    <div class="accordion-header p-6 flex-align-center justify-between cursor-pointer user-select-none">
-                        <h4 class="text-lg m-0 pr-4">What is the fee structure?</h4>
-                        <div
-                            class="accordion-icon w-8 h-8 rounded-circle bg-glass flex-center text-primary transition shrink-0">
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
-                        <div class="accordion-content-inner p-6 pt-0 text-muted border-top-glass mt-2">
-                            <p>Our fees reflect the premium, personalized nature of our program. Prices range from $900
-                                to $2,500 annually depending on the chosen curriculum. We offer flexible quarterly
-                                installment plans.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- FAQ Item 4 -->
                 <div class="accordion-item glass-card mb-4 border-radius-lg overflow-hidden transition">
                     <div class="accordion-header p-6 flex-align-center justify-between cursor-pointer user-select-none">
                         <h4 class="text-lg m-0 pr-4">Are classes available online or offline?</h4>
@@ -658,16 +657,16 @@
                     </div>
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
                         <div class="accordion-content-inner p-6 pt-0 text-muted border-top-glass mt-2">
-                            <p>We provide a hybrid model. Core conceptual classes are conducted in-person at our
-                                state-of-the-art center, while doubt clearing and revision sessions are accessible
-                                online via our premium portal.</p>
+                            <p>We primarily offer in-person classes at our dedicated chemistry center for maximum
+                                interaction. However, we do provide live online support and recorded revision
+                                masterclasses for all enrolled students.</p>
                         </div>
                     </div>
                 </div>
-                <!-- FAQ Item 5 -->
+                <!-- FAQ Item 3 -->
                 <div class="accordion-item glass-card mb-4 border-radius-lg overflow-hidden transition">
                     <div class="accordion-header p-6 flex-align-center justify-between cursor-pointer user-select-none">
-                        <h4 class="text-lg m-0 pr-4">Do you offer trial classes?</h4>
+                        <h4 class="text-lg m-0 pr-4">Are detailed study materials provided?</h4>
                         <div
                             class="accordion-icon w-8 h-8 rounded-circle bg-glass flex-center text-primary transition shrink-0">
                             <i class="fa-solid fa-plus"></i>
@@ -675,8 +674,43 @@
                     </div>
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
                         <div class="accordion-content-inner p-6 pt-0 text-muted border-top-glass mt-2">
-                            <p>Yes, shortlisted candidates can attend one masterclass before confirming enrollment to
-                                experience our unique pedagogical framework firsthand.</p>
+                            <p>Absolutely. Every student receives curated chapter-wise notes, daily practice sheets
+                                (DPPs), and board-specialized mock test papers designed personally by Dr. Soubhagya
+                                Dash.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="accordion-item glass-card mb-4 border-radius-lg overflow-hidden transition">
+                    <div class="accordion-header p-6 flex-align-center justify-between cursor-pointer user-select-none">
+                        <h4 class="text-lg m-0 pr-4">Is there personal doubt-clearing support?</h4>
+                        <div
+                            class="accordion-icon w-8 h-8 rounded-circle bg-glass flex-center text-primary transition shrink-0">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="accordion-content-inner p-6 pt-0 text-muted border-top-glass mt-2">
+                            <p>Personalized mentorship is our core value. We have dedicated doubt sessions every
+                                weekend, and students can also raise conceptual queries via our private student portal
+                                at any time.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 5 -->
+                <div class="accordion-item glass-card mb-4 border-radius-lg overflow-hidden transition">
+                    <div class="accordion-header p-6 flex-align-center justify-between cursor-pointer user-select-none">
+                        <h4 class="text-lg m-0 pr-4">How can I enroll for the 2026 Batch?</h4>
+                        <div
+                            class="accordion-icon w-8 h-8 rounded-circle bg-glass flex-center text-primary transition shrink-0">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="accordion-content-inner p-6 pt-0 text-muted border-top-glass mt-2">
+                            <p>You can start by filling out the enrollment inquiry form below. Our team will schedule a
+                                counseling call followed by a quick diagnostic test to assess the student's current
+                                conceptual standing.</p>
                         </div>
                     </div>
                 </div>
@@ -695,10 +729,11 @@
                 <div class="enroll-info p-10 lg-p-12 lg-w-2-5 bg-gradient-brand relative overflow-hidden">
                     <div class="absolute inset-0 bg-pattern opacity-10"></div>
                     <div class="relative z-10">
-                        <h2 class="text-3xl text-white mb-4">Take the <span class="text-bold">First Step</span></h2>
-                        <p class="text-white-80 leading-relaxed mb-10">Spaces are strictly limited to maintain our high
-                            standards of personalized coaching. Fill out the application form, and our admissions team
-                            will be in touch within 24 hours.</p>
+                        <h2 class="text-3xl text-white mb-4">Master Chemistry <span class="text-bold">with
+                                Clarity</span></h2>
+                        <p class="text-white-80 leading-relaxed mb-10">Limited seats available for the 2026 Board
+                            Specialization batches. Fill out the application form, and our academic team will be in
+                            touch within 24 hours.</p>
 
                         <div class="contact-details flex flex-col gap-6">
                             <div class="contact-item flex-align-center gap-4">
@@ -723,7 +758,7 @@
                                     <span
                                         class="d-block text-white-70 text-sm mb-1 uppercase tracking-wider font-medium">Email
                                         Us</span>
-                                    <strong class="d-block text-white text-lg">admissions@globaled.com</strong>
+                                    <strong class="d-block text-white text-lg">soubhagyachemistry@gmail.com</strong>
                                 </div>
                             </div>
                             <div class="contact-item flex-align-center gap-4 border-top-glass pt-6">
@@ -823,7 +858,8 @@
                             <i class="fa-solid fa-shield-check text-emerald text-6xl drop-shadow-emerald"></i>
                         </div>
                         <h3 class="text-2xl text-white mb-3">Application Received</h3>
-                        <p class="text-muted mb-8 max-w-sm mx-auto">Thank you for your interest in GlobalEd. Our
+                        <p class="text-muted mb-8 max-w-sm mx-auto">Thank you for your interest in Soubhagya’s
+                            Chemistry. Our
                             academic counselor will contact you within 24 hours.</p>
                         <button
                             class="btn btn-outline border-white text-white hover-bg-white hover-text-dark transition py-3 px-8 rounded-full"
@@ -846,7 +882,7 @@
                 achievers. Elevate their potential with structure, strategy, and personalized care today.</p>
             <a href="#enroll"
                 class="btn btn-primary btn-large glow-btn text-lg px-10 py-4 pulse-btn rounded-full d-inline-flex border-none cursor-pointer">Join
-                GlobalEd Now <i class="fa-solid fa-arrow-right ml-3"></i></a>
+                Soubhagya’s Chemistry Now <i class="fa-solid fa-arrow-right ml-3"></i></a>
         </div>
     </section>
 
@@ -854,14 +890,13 @@
     <footer class="footer bg-bg-darker pt-20 pb-6 border-top-glass relative z-10">
         <div class="container">
             <div class="grid grid-cols-1 md-grid-cols-2 lg-grid-cols-4 gap-12 mb-16">
-                <div class="footer-brand lg-col-span-1">
-                    <a href="#top"
-                        class="logo mb-6 d-inline-flex flex-align-center gap-3 text-2xl font-bold text-white">
-                        <span class="logo-icon text-primary"><i class="fa-solid fa-graduation-cap"></i></span>
-                        <span class="logo-text">GlobalEd</span>
+                <div class="footer-brand lg-w-1-3">
+                    <a href="#top" class="logo mb-6 d-inline-block">
+                        <span class="logo-icon"><i class="fa-solid fa-flask-vial"></i></span>
+                        <span class="logo-text">Soubhagya’s Chemistry</span>
                     </a>
-                    <p class="text-muted text-sm leading-relaxed mb-6">Shaping tomorrow's leaders through unparalleled
-                        academic rigor and personalized mentorship.</p>
+                    <p class="text-muted leading-relaxed mb-8">Specialized chemistry tuition for CBSE & ICSE Boards.
+                        Building foundational excellence through conceptual clarity and personalized mentorship.</p>
                     <div class="social-icons flex gap-3">
                         <a href="#"
                             class="social-btn w-10 h-10 rounded-circle bg-glass flex-center text-white hover-bg-primary hover-text-white transition"
@@ -880,11 +915,13 @@
                     <ul class="footer-menu flex flex-col gap-4">
                         <li><a href="#home" class="text-muted hover-text-primary transition text-sm">Home</a></li>
                         <li><a href="#about" class="text-muted hover-text-primary transition text-sm">About Dr.
-                                Wright</a></li>
-                        <li><a href="#courses" class="text-muted hover-text-primary transition text-sm">Curriculum</a>
+                                Soubhagya Dash</a></li>
+                        <li><a href="#courses" class="text-muted hover-text-primary transition text-sm">Courses</a>
                         </li>
                         <li><a href="#admissions" class="text-muted hover-text-primary transition text-sm">Admissions
                                 Status</a></li>
+                        <li><a href="#achievements" class="text-muted hover-text-primary transition">Results</a></li>
+                        <li><a href="#resources" class="text-muted hover-text-primary transition">Resources</a></li>
                     </ul>
                 </div>
 
@@ -924,7 +961,7 @@
 
             <div
                 class="footer-bottom border-top-glass pt-6 flex flex-col md-flex-row flex-align-center justify-between gap-4">
-                <p class="text-muted text-xs">&copy; 2026 GlobalEd Premium Tuition. All rights reserved.</p>
+                <p class="text-muted text-xs">&copy; 2026 Soubhagya’s Chemistry. All rights reserved.</p>
                 <div class="legal-links flex gap-6">
                     <a href="#" class="text-muted text-xs hover-text-white transition">Privacy Policy</a>
                     <a href="#" class="text-muted text-xs hover-text-white transition">Terms of Service</a>
@@ -935,6 +972,24 @@
 
     <!-- Scripts -->
     <script src="script.js"></script>
+    <!-- Side Action Buttons -->
+    <div class="side-actions">
+        <a href="https://wa.me/918908203302" class="side-action whatsapp" target="_blank" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="tel:+918908203302" class="side-action phone" aria-label="Call Us">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call Now</span>
+        </a>
+        <a href="#home" class="side-action scroll-top" id="scrollTopBtn" aria-label="Back to Top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+        <div class="side-action chat-trigger" aria-label="Chat">
+            <i class="fa-solid fa-comment-dots"></i>
+        </div>
+    </div>
+
 </body>
 
 </html>
