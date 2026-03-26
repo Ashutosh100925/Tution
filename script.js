@@ -19,19 +19,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Mobile Menu Toggle
     const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (mobileMenu) {
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    if (mobileMenu && mobileSidebar) {
+        const toggleMenu = () => {
+            mobileSidebar.classList.toggle('active');
             const icon = mobileMenu.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
+            if (mobileSidebar.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-xmark');
             } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
+                icon.classList.replace('fa-xmark', 'fa-bars');
             }
+        };
+
+        mobileMenu.addEventListener('click', toggleMenu);
+        if (closeSidebar) closeSidebar.addEventListener('click', () => {
+            mobileSidebar.classList.remove('active');
+            const icon = mobileMenu.querySelector('i');
+            if (icon) icon.classList.replace('fa-xmark', 'fa-bars');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.sidebar-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileSidebar.classList.remove('active');
+                const icon = mobileMenu.querySelector('i');
+                if (icon) icon.classList.replace('fa-xmark', 'fa-bars');
+            });
         });
     }
 
@@ -39,10 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            
             if (mobileMenu) {
                 const icon = mobileMenu.querySelector('i');
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
             }
         });
     });
@@ -244,6 +262,47 @@ document.addEventListener('DOMContentLoaded', () => {
             enrollmentForm.reset();
             formSuccess.classList.add('hidden');
             enrollmentForm.classList.remove('hidden');
+        });
+    }
+
+    // 9. Typing Animation Logic
+    const typingText = document.getElementById('typing-text');
+    const phrase = "Every Reaction Begins with Understanding.";
+    let i = 0;
+    const speed = 70; // typing speed in ms
+
+    if (typingText) {
+        const typeWriter = () => {
+            if (i < phrase.length) {
+                typingText.innerHTML += phrase.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        };
+
+        // Start typing after a short delay
+        setTimeout(typeWriter, 1000);
+    }
+
+    // 10. Scroll to Top Logic
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        // Initial state
+        scrollTopBtn.style.opacity = '0';
+        scrollTopBtn.style.pointerEvents = 'none';
+        scrollTopBtn.style.transform = 'translateY(20px)';
+        scrollTopBtn.style.transition = 'all 0.4s ease';
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.style.opacity = '1';
+                scrollTopBtn.style.pointerEvents = 'auto';
+                scrollTopBtn.style.transform = 'translateY(0)';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                scrollTopBtn.style.pointerEvents = 'none';
+                scrollTopBtn.style.transform = 'translateY(20px)';
+            }
         });
     }
 });
