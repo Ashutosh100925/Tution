@@ -8,6 +8,12 @@
         (function() {
             const theme = localStorage.getItem('selected-theme') || 'theme-sage';
             document.documentElement.className = theme;
+            if (theme === 'theme-custom') {
+                const custom = JSON.parse(localStorage.getItem('custom-theme-settings') || '{}');
+                for (const [key, value] of Object.entries(custom)) {
+                    document.documentElement.style.setProperty(`--custom-${key}`, value);
+                }
+            }
         })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
@@ -277,6 +283,103 @@
 
                 </div>
             </div>
+
+            <!-- Theme Builder Panel (Hidden by default) -->
+            <div id="themeBuilder" class="theme-builder-container" style="display: none; margin-top: 2rem;">
+                <div class="theme-builder-wrapper glass-card p-10">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h2 class="text-2xl mb-2">Theme Builder</h2>
+                            <p class="text-muted mb-10">Design your own unique experience. Changes are previewed instantly.</p>
+                            
+                            <div class="builder-field mb-6">
+                                <label class="d-block mb-2 text-sm font-semibold">Theme Name</label>
+                                <input type="text" id="customName" class="builder-input" value="My Custom Theme">
+                            </div>
+
+                            <div class="builder-field mb-6">
+                                <label class="d-block mb-2 text-sm font-semibold">Primary Accent</label>
+                                <div class="color-picker-group">
+                                    <input type="color" id="customPrimary" value="#84A98C">
+                                    <input type="text" id="customPrimaryHex" value="#84A98C" class="builder-input hex-input">
+                                </div>
+                            </div>
+
+                            <div class="builder-field mb-6">
+                                <label class="d-block mb-2 text-sm font-semibold">Secondary Accent</label>
+                                <div class="color-picker-group">
+                                    <input type="color" id="customSecondary" value="#84A98C">
+                                    <input type="text" id="customSecondaryHex" value="#84A98C" class="builder-input hex-input">
+                                </div>
+                            </div>
+
+                            <div class="builder-field mb-6">
+                                <label class="d-block mb-2 text-sm font-semibold">Background Base</label>
+                                <div class="color-picker-group">
+                                    <input type="color" id="customBg" value="#2F3E46">
+                                    <input type="text" id="customBgHex" value="#2F3E46" class="builder-input hex-input">
+                                </div>
+                            </div>
+
+                            <div class="builder-field mb-6">
+                                <label class="d-block mb-2 text-sm font-semibold">Sidebar Color</label>
+                                <div class="color-picker-group">
+                                    <input type="color" id="customSidebar" value="#263238">
+                                    <input type="text" id="customSidebarHex" value="#263238" class="builder-input hex-input">
+                                </div>
+                            </div>
+
+                            <div class="builder-field mb-6">
+                                <label class="d-block mb-2 text-sm font-semibold">Text Color</label>
+                                <div class="color-picker-group">
+                                    <input type="color" id="customText" value="#FFFFFF">
+                                    <input type="text" id="customTextHex" value="#FFFFFF" class="builder-input hex-input">
+                                </div>
+                            </div>
+
+                            <div class="builder-field mb-6">
+                                <label class="d-block mb-2 text-sm font-semibold">Glass Opacity (80%)</label>
+                                <input type="range" id="customOpacity" min="0" max="1" step="0.01" value="0.8" class="builder-slider">
+                            </div>
+
+                            <div class="builder-field mb-10">
+                                <label class="d-block mb-2 text-sm font-semibold">Wallpaper Background</label>
+                                <div class="wallpaper-group">
+                                    <input type="text" id="customWallpaper" class="builder-input" placeholder="Paste image URL...">
+                                    <button class="btn btn-secondary border-glass px-4"><i class="fa-solid fa-upload"></i> Upload</button>
+                                </div>
+                                <p class="text-xs text-muted mt-2">Paste a URL or upload a local image for your background.</p>
+                            </div>
+
+                            <div class="builder-actions d-flex gap-4">
+                                <button id="applyLive" class="btn btn-primary flex-1">Apply Live</button>
+                                <button id="saveCollection" class="btn btn-dark border-glass flex-1">Save to Collection</button>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center">
+                            <div class="live-preview-box shadow-blue">
+                                <div class="preview-dashboard" id="previewDashboard">
+                                    <div class="preview-sidebar" id="previewSidebar">
+                                        <div class="preview-icon-box" id="previewIcon"></div>
+                                        <div class="preview-line"></div>
+                                        <div class="preview-line"></div>
+                                    </div>
+                                    <div class="preview-content">
+                                        <div class="preview-nav" id="previewNav"></div>
+                                        <div class="preview-grid">
+                                            <div class="preview-card" id="previewCard1"></div>
+                                            <div class="preview-card" id="previewCard2"></div>
+                                        </div>
+                                        <div class="preview-bottom"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="mt-6 font-semibold">Live Preview</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -320,6 +423,7 @@
         // Filter interaction
         const filterBtns = document.querySelectorAll('.filter-btn');
         const themesGrid = document.getElementById('themesGrid');
+        const themeBuilder = document.getElementById('themeBuilder');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -329,17 +433,131 @@
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                // Filter the cards
-                themeCards.forEach(card => {
-                    const category = card.dataset.category;
-                    if (filter === 'all' || filter === category) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                if (filter === 'custom-builder') {
+                    document.querySelector('.themes-container').style.display = 'none';
+                    themeBuilder.style.display = 'block';
+                } else {
+                    document.querySelector('.themes-container').style.display = 'block';
+                    themeBuilder.style.display = 'none';
+                    
+                    // Filter the cards
+                    themeCards.forEach(card => {
+                        const category = card.dataset.category;
+                        if (filter === 'all' || filter === category) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
             });
         });
+
+        // Builder Logic
+        const inputs = {
+            primary: document.getElementById('customPrimary'),
+            primaryHex: document.getElementById('customPrimaryHex'),
+            secondary: document.getElementById('customSecondary'),
+            secondaryHex: document.getElementById('customSecondaryHex'),
+            bg: document.getElementById('customBg'),
+            bgHex: document.getElementById('customBgHex'),
+            sidebar: document.getElementById('customSidebar'),
+            sidebarHex: document.getElementById('customSidebarHex'),
+            text: document.getElementById('customText'),
+            textHex: document.getElementById('customTextHex'),
+            opacity: document.getElementById('customOpacity'),
+            wallpaper: document.getElementById('customWallpaper')
+        };
+
+        const preview = {
+            dashboard: document.getElementById('previewDashboard'),
+            sidebar: document.getElementById('previewSidebar'),
+            icon: document.getElementById('previewIcon'),
+            nav: document.getElementById('previewNav'),
+            cards: [document.getElementById('previewCard1'), document.getElementById('previewCard2')]
+        };
+
+        // Sync Color Inputs
+        ['primary', 'secondary', 'bg', 'sidebar', 'text'].forEach(key => {
+            const picker = inputs[key];
+            const hex = inputs[`${key}Hex`];
+            
+            picker.addEventListener('input', () => {
+                hex.value = picker.value.toUpperCase();
+                updatePreview();
+            });
+            
+            hex.addEventListener('input', () => {
+                if (/^#[0-9A-F]{6}$/i.test(hex.value)) {
+                    picker.value = hex.value;
+                    updatePreview();
+                }
+            });
+        });
+
+        inputs.opacity.addEventListener('input', updatePreview);
+        inputs.wallpaper.addEventListener('input', updatePreview);
+
+        function updatePreview() {
+            preview.dashboard.style.backgroundColor = inputs.bg.value;
+            preview.sidebar.style.backgroundColor = inputs.sidebar.value;
+            preview.icon.style.backgroundColor = inputs.primary.value;
+            preview.nav.style.backgroundColor = inputs.sidebar.value;
+            preview.cards.forEach(card => {
+                card.style.backgroundColor = `rgba(255, 255, 255, ${inputs.opacity.value * 0.1})`;
+                card.style.borderColor = `rgba(255, 255, 255, 0.1)`;
+            });
+            
+            if (inputs.wallpaper.value) {
+                preview.dashboard.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${inputs.wallpaper.value}')`;
+                preview.dashboard.style.backgroundSize = 'cover';
+            } else {
+                preview.dashboard.style.backgroundImage = 'none';
+            }
+        }
+
+        // Apply Live
+        document.getElementById('applyLive').addEventListener('click', () => {
+            const settings = {
+                primary: inputs.primary.value,
+                secondary: inputs.secondary.value,
+                bg: inputs.bg.value,
+                sidebar: inputs.sidebar.value,
+                text: inputs.text.value,
+                opacity: inputs.opacity.value,
+                overlay: inputs.wallpaper.value ? 0.5 : 0.7, // Dynamic overlay based on wallpaper
+                wallpaper: inputs.wallpaper.value ? `url('${inputs.wallpaper.value}')` : 'none'
+            };
+            
+            localStorage.setItem('selected-theme', 'theme-custom');
+            localStorage.setItem('custom-theme-settings', JSON.stringify(settings));
+            
+            // Apply immediately to HTML
+            document.documentElement.className = 'theme-custom';
+            for (const [key, value] of Object.entries(settings)) {
+                document.documentElement.style.setProperty(`--custom-${key}`, value);
+            }
+            
+            showToast('Custom theme applied live!');
+        });
+
+        // Save to Collection Mock
+        document.getElementById('saveCollection').addEventListener('click', () => {
+            showToast('Theme saved to your collection!');
+        });
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = 'glass-card p-4 fixed bottom-10 right-10 shadow-blue';
+            toast.style.zIndex = '9999';
+            toast.style.animation = 'fadeInUp 0.3s ease';
+            toast.innerHTML = `<i class="fa-solid fa-check-circle mr-2 text-primary"></i> ${msg}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Initialize preview
+        updatePreview();
     </script>
 </body>
 </html>
