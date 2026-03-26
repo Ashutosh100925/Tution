@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Store | Soubhagya`s Chemistry</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('selected-theme') || 'theme-sage';
+            document.documentElement.className = theme;
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-darker text-main font-sans min-h-screen">
+    <div id="top"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" style="border-bottom: var(--border-glass-light); padding: 1rem 0;">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                <span class="logo-text">Soubhagya`s Chemistry</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-arrow-left mr-2"></i> Back to Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Theme Store Header -->
+    <section class="section pt-32 pb-10 relative">
+        <div class="container">
+            <h1 class="text-3xl mb-10">Theme Store</h1>
+            
+            <div class="theme-filters">
+                <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-wand-magic-sparkles"></i> All Themes</button>
+                <button class="filter-btn" data-filter="nature"><i class="fa-solid fa-leaf"></i> Nature</button>
+                <button class="filter-btn" data-filter="executive"><i class="fa-solid fa-briefcase"></i> Executive</button>
+                <button class="filter-btn" data-filter="minimalist"><i class="fa-solid fa-table-cells"></i> Minimalist</button>
+                <button class="filter-btn" data-filter="my-collection"><i class="fa-solid fa-star"></i> My Collection</button>
+                <button class="filter-btn" data-filter="custom-builder"><i class="fa-solid fa-palette"></i> Custom Builder</button>
+            </div>
+
+            <!-- Theme Store Grid -->
+            <div class="themes-container shadow-blue">
+                <div class="themes-grid" id="themesGrid">
+                    
+                    <!-- CATEGORY: NATURE -->
+                    <div class="theme-card" data-theme="theme-sage" data-category="nature">
+                        <div class="theme-preview" style="background: #060b19;">
+                            <div class="theme-preview-sidebar" style="background: #03060d;">
+                                <div class="icon-box" style="background: #3b82f6;"></div>
+                                <div class="line mt-2"></div><div class="line"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #03060d;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Sage (Default)</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-eucalyptus" data-category="nature">
+                        <div class="theme-preview" style="background: #f8fafc; border-color: #e2e8f0;">
+                            <div class="theme-preview-sidebar" style="background: #f1f5f9;">
+                                <div class="icon-box" style="background: #10b981;"></div>
+                                <div class="line mt-2" style="background: #cbd5e1;"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #f1f5f9;"></div>
+                                <div class="boxes"><div class="box" style="background: #fff;"></div><div class="box" style="background: #fff;"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Eucalyptus</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-terra" data-category="nature">
+                        <div class="theme-preview" style="background: #2a2422;">
+                            <div class="theme-preview-sidebar" style="background: #1c1816;">
+                                <div class="icon-box" style="background: #cca48e;"></div>
+                                <div class="line mt-2"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #1c1816;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Terra</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-oceanic" data-category="nature">
+                        <div class="theme-preview" style="background: #083344;">
+                            <div class="theme-preview-sidebar" style="background: #020617;">
+                                <div class="icon-box" style="background: #06b6d4;"></div>
+                                <div class="line mt-2"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #020617;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Oceanic</span>
+                    </div>
+
+                    <!-- CATEGORY: EXECUTIVE -->
+                    <div class="theme-card" data-theme="theme-obsidian" data-category="executive">
+                        <div class="theme-preview" style="background: #171717;">
+                            <div class="theme-preview-sidebar" style="background: #0a0a0a;">
+                                <div class="icon-box" style="background: #f5f5f5;"></div>
+                                <div class="line mt-2"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #0a0a0a;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Obsidian</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-midnight-navy" data-category="executive">
+                        <div class="theme-preview" style="background: #020617;">
+                            <div class="theme-preview-sidebar" style="background: #000;">
+                                <div class="icon-box" style="background: #38bdf8;"></div>
+                                <div class="line mt-2"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #000;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Midnight Navy</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-deep-forest" data-category="executive">
+                        <div class="theme-preview" style="background: #064e3b;">
+                            <div class="theme-preview-sidebar" style="background: #022c22;">
+                                <div class="icon-box" style="background: #34d399;"></div>
+                                <div class="line mt-2"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #022c22;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Deep Forest</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-royal-plum" data-category="executive">
+                        <div class="theme-preview" style="background: #1e1b4b;">
+                            <div class="theme-preview-sidebar" style="background: #111827;">
+                                <div class="icon-box" style="background: #a78bfa;"></div>
+                                <div class="line mt-2"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #111827;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Royal Plum</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-corporate-steel" data-category="executive">
+                        <div class="theme-preview" style="background: #1f2937;">
+                            <div class="theme-preview-sidebar" style="background: #111827;">
+                                <div class="icon-box" style="background: #9ca3af;"></div>
+                                <div class="line mt-2"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #111827;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Corporate Steel</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-crimson" data-category="executive">
+                        <div class="theme-preview" style="background: #450a0a;">
+                            <div class="theme-preview-sidebar" style="background: #1a0202;">
+                                <div class="icon-box" style="background: #ef4444;"></div>
+                                <div class="line mt-2"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #1a0202;"></div>
+                                <div class="boxes"><div class="box"></div><div class="box"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Crimson</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-crimson-light" data-category="executive">
+                        <div class="theme-preview" style="background: #fff; border-color: #fee2e2;">
+                            <div class="theme-preview-sidebar" style="background: #fef2f2;">
+                                <div class="icon-box" style="background: #ef4444;"></div>
+                                <div class="line mt-2" style="background: #fca5a5;"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #fef2f2;"></div>
+                                <div class="boxes"><div class="box" style="background: #fff;"></div><div class="box" style="background: #fff;"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Crimson Light</span>
+                    </div>
+
+                    <!-- CATEGORY: MINIMALIST -->
+                    <div class="theme-card" data-theme="theme-paper" data-category="minimalist">
+                        <div class="theme-preview" style="background: #fff; border-color: #e5e7eb;">
+                            <div class="theme-preview-sidebar" style="background: #f9fafb;">
+                                <div class="icon-box" style="background: #000;"></div>
+                                <div class="line mt-2" style="background: #d1d5db;"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #f9fafb;"></div>
+                                <div class="boxes"><div class="box" style="background: #fff;"></div><div class="box" style="background: #fff;"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Paper</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-porcelain" data-category="minimalist">
+                        <div class="theme-preview" style="background: #f1f5f9; border-color: #cbd5e1;">
+                            <div class="theme-preview-sidebar" style="background: #e2e8f0;">
+                                <div class="icon-box" style="background: #475569;"></div>
+                                <div class="line mt-2" style="background: #94a3b8;"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #e2e8f0;"></div>
+                                <div class="boxes"><div class="box" style="background: #fff;"></div><div class="box" style="background: #fff;"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Porcelain</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-sandstone" data-category="minimalist">
+                        <div class="theme-preview" style="background: #f5f5f4; border-color: #e7e5e4;">
+                            <div class="theme-preview-sidebar" style="background: #d6d3d1;">
+                                <div class="icon-box" style="background: #a8a29e;"></div>
+                                <div class="line mt-2" style="background: #a8a29e; opacity: 0.3;"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #d6d3d1;"></div>
+                                <div class="boxes"><div class="box" style="background: #fff;"></div><div class="box" style="background: #fff;"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Sandstone</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-mist" data-category="minimalist">
+                        <div class="theme-preview" style="background: #f0f9ff; border-color: #bae6fd;">
+                            <div class="theme-preview-sidebar" style="background: #e0f2fe;">
+                                <div class="icon-box" style="background: #0ea5e9;"></div>
+                                <div class="line mt-2" style="background: #7dd3fc;"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #e0f2fe;"></div>
+                                <div class="boxes"><div class="box" style="background: #fff;"></div><div class="box" style="background: #fff;"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Mist</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="theme-linen" data-category="minimalist">
+                        <div class="theme-preview" style="background: #f9fafb; border-color: #e5e7eb;">
+                            <div class="theme-preview-sidebar" style="background: #f3f4f6;">
+                                <div class="icon-box" style="background: #6b7280;"></div>
+                                <div class="line mt-2" style="background: #9ca3af;"></div>
+                            </div>
+                            <div class="theme-preview-content">
+                                <div class="header-bar" style="background: #f3f4f6;"></div>
+                                <div class="boxes"><div class="box" style="background: #fff;"></div><div class="box" style="background: #fff;"></div></div>
+                            </div>
+                        </div>
+                        <span class="theme-name">Linen</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Store functional logic
+        const currentTheme = localStorage.getItem('selected-theme') || 'theme-sage';
+        
+        // Initial Active State
+        const themeCards = document.querySelectorAll('.theme-card');
+        themeCards.forEach(card => {
+            if (card.dataset.theme === currentTheme) {
+                activateThemeUI(card);
+            }
+            
+            card.addEventListener('click', () => {
+                const newTheme = card.dataset.theme;
+                
+                // 1. Update localStorage
+                localStorage.setItem('selected-theme', newTheme);
+                
+                // 2. Apply classes immediately
+                document.documentElement.className = newTheme;
+                
+                // 3. Update UI
+                themeCards.forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.theme-active-icon').forEach(icon => icon.remove());
+                activateThemeUI(card);
+            });
+        });
+
+        function activateThemeUI(card) {
+            card.classList.add('active');
+            const nameSpan = card.querySelector('.theme-name');
+            if (nameSpan && !nameSpan.querySelector('.theme-active-icon')) {
+                const icon = document.createElement('i');
+                icon.className = 'fa-solid fa-check theme-active-icon';
+                nameSpan.appendChild(icon);
+            }
+        }
+
+        // Filter interaction
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const themesGrid = document.getElementById('themesGrid');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                
+                // Update active state of buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter the cards
+                themeCards.forEach(card => {
+                    const category = card.dataset.category;
+                    if (filter === 'all' || filter === category) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
