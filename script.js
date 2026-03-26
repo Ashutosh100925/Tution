@@ -1,28 +1,30 @@
-/* =========================================================================
-   EduPrime - JavaScript Interactivity
-   ========================================================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Settings Toggle
+    const settingsToggle = document.getElementById('settingsToggle');
+    const settingsDropdown = document.getElementById('settingsDropdown');
 
-    /* --- 1. NAVBAR SCROLL EFFECT & MOBILE MENU --- */
-    const navbar = document.getElementById('navbar');
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const navLinks = document.getElementById('nav-links');
+    if (settingsToggle && settingsDropdown) {
+        settingsToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsDropdown.classList.toggle('hidden');
+        });
 
-    // Sticky Navbar shadow on scroll
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!settingsToggle.contains(e.target) && !settingsDropdown.contains(e.target)) {
+                settingsDropdown.classList.add('hidden');
+            }
+        });
+    }
 
-    // Mobile Menu Toggle
-    if (mobileBtn && navLinks) {
-        mobileBtn.addEventListener('click', () => {
+    // 1. Mobile Menu Toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            const icon = mobileBtn.querySelector('i');
+            const icon = mobileMenu.querySelector('i');
             if (navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
@@ -31,207 +33,217 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.add('fa-bars');
             }
         });
-
-        // Close mobile nav when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                let icon = mobileBtn.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
-                }
-            });
-        });
     }
 
-    /* --- 2. SCROLL REVEAL ANIMATIONS (Intersection Observer) --- */
-    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-fade, .reveal-scale');
-    
-    const revealCallback = (entries, observer) => {
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            if (mobileMenu) {
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+
+    // 2. Sticky Navbar & Active Link Update on Scroll
+    const navbar = document.getElementById('navbar');
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+        // Sticky Navbar
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Active Link Update
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id') || '';
+            }
+        });
+
+        navItems.forEach(link => {
+            link.classList.remove('active');
+            // Check if link href matches #current
+            if (current && link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            } else if (!current && link.getAttribute('href') === '#top') {
+               link.classList.add('active');
+            }
+        });
+    });
+
+    // 3. Scroll Reveal Animations using Intersection Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Animate only once per load
+                observer.unobserve(entry.target); // Animate only once per element
             }
         });
-    };
+    }, revealOptions);
 
-    const revealOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px" // Trigger slightly before crossing the view
-    };
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
 
-    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    /* --- 3. ANIMATED COUNTERS --- */
-    const counters = document.querySelectorAll('.counter-num');
+    // 4. Counter Animation inside achievements section
+    const counters = document.querySelectorAll('.stat-number');
+    const achievementsSection = document.getElementById('achievements');
     let hasCounted = false;
 
-    const counterCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasCounted) {
-                counters.forEach(counter => {
-                    const updateCount = () => {
-                        const target = +counter.getAttribute('data-target');
-                        const count = +counter.innerText;
-                        
-                        // Calculate increment for smooth animation (lower speed = faster)
-                        const speed = 150; 
-                        const inc = target / speed;
-
-                        if (count < target) {
-                            counter.innerText = Math.ceil(count + inc);
-                            setTimeout(updateCount, 15);
-                        } else {
-                            counter.innerText = target;
-                        }
-                    };
-                    updateCount();
-                });
-                hasCounted = true;
-                observer.disconnect(); // Stop observing once counted
-            }
+    const runCounters = () => {
+        counters.forEach(counter => {
+            counter.innerText = '0';
+            const target = +counter.getAttribute('data-target');
+            // Approx 60fps = 16ms per frame. Duration max 2s (125 frames)
+            const increment = target / 100;
+            
+            const updateCounter = () => {
+                const current = +counter.innerText;
+                if (current < target) {
+                    counter.innerText = Math.ceil(current + increment);
+                    setTimeout(updateCounter, 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCounter();
         });
     };
 
-    const resultsSection = document.getElementById('results');
-    if(resultsSection) {
-        const counterObserver = new IntersectionObserver(counterCallback, { threshold: 0.5 });
-        counterObserver.observe(resultsSection);
+    // Observer for counters container
+    if (achievementsSection) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            const [entry] = entries;
+            if (entry.isIntersecting && !hasCounted) {
+                runCounters();
+                hasCounted = true;
+            }
+        }, { threshold: 0.5 });
+        counterObserver.observe(achievementsSection);
     }
 
-    /* --- 4. TESTIMONIAL SLIDER --- */
-    const track = document.getElementById('testimonial-track');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const dots = document.querySelectorAll('.dot');
+    // 5. Testimonial Slider
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.slider-dots .dot');
+    const prevBtn = document.getElementById('prevTestimonial');
+    const nextBtn = document.getElementById('nextTestimonial');
     
-    if (track && prevBtn && nextBtn && dots.length > 0) {
-        let currentIndex = 0;
-        const totalSlides = dots.length;
-        let slideInterval;
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        const totalSlides = slides.length;
 
         const updateSlider = (index) => {
-            track.style.transform = `translateX(-${index * 100}%)`;
+            // reset all
+            slides.forEach(slide => slide.classList.remove('active-slide'));
             dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
+
+            // set active slide
+            slides[index].classList.add('active-slide');
+            if (dots[index]) dots[index].classList.add('active');
+            currentSlide = index;
         };
 
-        const startAutoSlide = () => {
-            slideInterval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateSlider(currentIndex);
-            }, 6000); // 6 seconds per slide
-        };
-        
-        const resetInterval = () => {
-            clearInterval(slideInterval);
-            startAutoSlide();
-        };
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                let nextIndex = (currentSlide + 1) % totalSlides;
+                updateSlider(nextIndex);
+            });
+        }
 
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            updateSlider(currentIndex);
-            resetInterval();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            updateSlider(currentIndex);
-            resetInterval();
-        });
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                let prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider(prevIndex);
+            });
+        }
 
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
-                currentIndex = index;
-                updateSlider(currentIndex);
-                resetInterval();
+                updateSlider(index);
             });
         });
 
-        startAutoSlide(); // Initialize
+        // Auto slide interval every 6 seconds
+        setInterval(() => {
+            let nextIndex = (currentSlide + 1) % totalSlides;
+            updateSlider(nextIndex);
+        }, 6000);
     }
 
-    /* --- 5. FAQ ACCORDION --- */
-    const faqItems = document.querySelectorAll('.faq-item');
+    // 6. FAQ Accordion Logic
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
     
-    faqItems.forEach(item => {
-        const questionBtn = item.querySelector('.faq-question');
-        
-        questionBtn.addEventListener('click', () => {
-            const isOpen = item.classList.contains('active');
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const item = header.parentElement;
             
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
-                otherItem.querySelector('.faq-answer').style.maxHeight = null;
+            // Close all other accordions first
+            document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const icon = otherItem.querySelector('.accordion-icon i');
+                    if (icon) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    }
+                }
             });
 
-            // Toggle current if it wasn't open
-            if (!isOpen) {
-                item.classList.add('active');
-                const answer = item.querySelector('.faq-answer');
-                // Calculate actual height needed (+ padding)
-                answer.style.maxHeight = answer.scrollHeight + 40 + "px"; 
+            // Toggle current accordion
+            item.classList.toggle('active');
+            const icon = header.querySelector('.accordion-icon i');
+            if (item.classList.contains('active')) {
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+            } else {
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
             }
         });
     });
 
-    /* --- 6. FRONTEND FORM VALIDATION & MOCK SUBMIT --- */
-    const form = document.getElementById('enrollForm');
-    const formMsg = document.getElementById('formMsg');
-    
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); 
+    // 7. Form Submission Mock functionality
+    const enrollmentForm = document.getElementById('enrollmentForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const resetFormBtn = document.getElementById('resetFormBtn');
+
+    if (enrollmentForm) {
+        enrollmentForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent standard page reload
             
-            const btn = document.getElementById('submitBtn');
-            const originalText = btn.innerHTML;
+            // Basic frontend validation mock logic
+            const studentName = document.getElementById('studentName').value;
+            const parentName = document.getElementById('parentName').value;
             
-            // Show loading state
-            btn.innerHTML = 'Processing... <i class="fa-solid fa-spinner fa-spin"></i>';
-            btn.style.opacity = '0.7';
-            btn.disabled = true;
-            
-            // Simulate API request (1.5s delay)
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.opacity = '1';
-                btn.disabled = false;
-                
-                // Clear form and show success message
-                form.reset();
-                formMsg.textContent = "Application submitted successfully! Our team will contact you shortly.";
-                formMsg.className = "form-msg success";
-                formMsg.style.display = "block";
-                
-                // Hide success message after 5 seconds
-                setTimeout(() => {
-                    formMsg.style.display = 'none';
-                }, 5000);
-            }, 1500);
+            if (studentName && parentName) {
+                // Show success view
+                enrollmentForm.classList.add('hidden');
+                formSuccess.classList.remove('hidden');
+            }
         });
     }
 
-    /* --- 7. SMOOTH SCROLLING FOR ANCHOR LINKS --- */
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                e.preventDefault();
-                // Account for fixed navbar height (approx 80px)
-                const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 80;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
+    if (resetFormBtn) {
+        resetFormBtn.addEventListener('click', () => {
+            enrollmentForm.reset();
+            formSuccess.classList.add('hidden');
+            enrollmentForm.classList.remove('hidden');
         });
-    });
+    }
 });
